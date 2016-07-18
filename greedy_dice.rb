@@ -1,27 +1,27 @@
 class Dice
-	def initialize
-	end
+  def initialize
+  end
 
-	def self.roll
-		1 + rand(6)
-	end
+  def self.roll
+    1 + rand(6)
+  end
 end
 
 class Greed
-	def initialize(num_players)
-		@num_players = num_players
-		#which player's turn it is
-		@turn_player = 0
-		#total score for each player
-		@total_score = Array.new(num_players, 0)
+  def initialize(num_players)
+    @num_players = num_players
+    #which player's turn it is
+    @turn_player = 0
+    #total score for each player
+    @total_score = Array.new(num_players, 0)
     @final_round = false
     @player_index = 0
     @turn_index = 1
-	end
+  end
 
-	#turn specific to each player
-	def play
-		begin
+  #turn specific to each player
+  def play
+    begin
       num_dices = 5
       print_turn
       if @final_round == false
@@ -54,27 +54,27 @@ class Greed
       @player_index += 1
       @player_index %= @num_players
     end while true
-	end
+  end
 
-	#each player can have multiple turns
-	private
-	def round(num_dices, player_index)
+  #each player can have multiple turns
+  private
+  def round(num_dices, player_index)
     rolls = Array.new(num_dices)
-		num_dices.times do |i|
-			rolls[i] = Dice::roll
-		end
+    num_dices.times do |i|
+      rolls[i] = Dice::roll
+    end
     score, non_scoring = calc_score(num_dices, rolls)
     num_dices -= non_scoring
     print_rolls(player_index, rolls)
     return score, num_dices
-	end
+  end
 
-	private
-	def continue_rolling?(num_dices)
+  private
+  def continue_rolling?(num_dices)
     return false if num_dices == 0
-		print "Do you want to roll the non-scoring #{num_dices} dice? (y/n): "
-		return gets.chomp == "y"
-	end
+    print "Do you want to roll the non-scoring #{num_dices} dice? (y/n): "
+    return gets.chomp == "y"
+  end
 
   private
   def play_final_round
