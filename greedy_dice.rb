@@ -64,9 +64,8 @@ class Greed
       rolls[i] = Dice::roll
     end
     score, non_scoring = calc_score(num_dices, rolls)
-    num_dices -= non_scoring
     print_rolls(player_index, rolls)
-    return score, num_dices
+    return score, non_scoring
   end
 
   private
