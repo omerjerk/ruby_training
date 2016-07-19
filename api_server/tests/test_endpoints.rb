@@ -17,14 +17,24 @@ class APITest < Test::Unit::TestCase
     assert_equal json_response("success"), last_response.body
 
     5.times {
-    	get '/get'
-    	assert last_response.ok?
+      get '/get'
+      assert last_response.ok?
     }
 
     get '/get'
     assert last_response.ok?
     assert_equal json_response("key_not_available"), last_response.body
 
+    get '/generate'
+    assert last_response.ok?
+
+    get '/get'
+    assert last_response.ok?
+    key = JSON.parse(last_response.body)["result"]
+
+    get '/delete', :key => key
+    assert last_response.ok?
+    assert_equal json_response("success"), last_response.body
   end
 
 end
