@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<script type="text/javascript">
-			function startReadingLogs() {
-				var ws = new WebSocket("ws://localhost:8080");
-				ws.onopen = function() {
-					ws.send("Hello!");
-					window.logDiv = document.getElementById("log"); 
-				};
+    <head>
+        <script type="text/javascript">
+            function startReadingLogs() {
+                var ws = new WebSocket("ws://localhost:8080");
+                ws.onopen = function() {
+                    ws.send("Hello!");
+                    window.logDiv = document.getElementById("log"); 
+                };
 
-				ws.onmessage = function(event) {
-					console.log("received = " + event.data);
-					window.logDiv.innerHTML += event.data;
-				}
+                ws.onmessage = function(event) {
+                    console.log("received = " + event.data);
+                    window.logDiv.innerHTML += event.data;
+                }
 
-				ws.onclose = function() {
-					console.log("connection closed");
-				}
-			}
-		</script>
-	</head>
-	<body>
-		<input type="button" value="Start" onclick="startReadingLogs()" />
+                ws.onclose = function() {
+                    console.log("connection closed");
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <input type="button" value="Start" onclick="startReadingLogs()" />
 <pre id="log">
 </pre>
-	</body>
+    </body>
 </html>
