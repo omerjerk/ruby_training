@@ -23,7 +23,7 @@ class Greed
   def play
     begin
       num_dices = 5
-      print_turn
+      print_turn if @player_index == 0
       if @final_round == false
         turn_score = 0
         begin
