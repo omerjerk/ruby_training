@@ -118,6 +118,10 @@ class Greed
       non_scoring -= count[5]
     end
 
+    if non_scoring == 0
+      non_scoring = 5
+    end
+
     return score, non_scoring
   end
 
